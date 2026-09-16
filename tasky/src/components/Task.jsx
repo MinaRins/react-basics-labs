@@ -8,6 +8,8 @@ const Task = (props) => {
       <button onClick={props.markDone}>Done</button>
       <button onClick={props.markDone} className='doneButton'>Done</button>
       <div className="card" style={{backgroundColor: props.done ? 'lightgrey' : '#5bb4c4'}}></div>
+          <button className='deleteButton' onClick={props.deleteTask}>Delete</button>
+
     </div>
 
     
