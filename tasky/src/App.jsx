@@ -16,7 +16,8 @@ function App() {
   const [formState, setFormState] = useState({
     title: "",
     description: "",
-    deadline: ""
+    deadline: "",
+    priority: "low"
   });
 
   const doneHandler = (taskIndex) => {
@@ -44,6 +45,9 @@ function App() {
       case "deadline":
         form.deadline = event.target.value;
         break;
+      case "priority":
+        form.priority = event.target.value;
+        break;
       default:
         form = formState;
     }
@@ -57,9 +61,10 @@ function App() {
     const form = { ...formState };
 
     form.id = uuidv4();
+    form.done = false;
     tasks.push(form);
     setTaskState({ tasks });
-    setFormState({ title: "", description: "", deadline: "" });
+    setFormState({ title: "", description: "", deadline: "", priority: "low" });
   };
 
   return (
@@ -70,6 +75,7 @@ function App() {
           title={task.title}
           description={task.description}
           deadline={task.deadline}
+          priority={task.priority}
           key={task.id}
           done={task.done}
           markDone={() => doneHandler(index)}
