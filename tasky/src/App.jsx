@@ -7,21 +7,40 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 
-
 function App() {
   const [taskState, setTaskState] = useState({
     tasks: [
-      { id: 1, title: "Dishes", description: "Empty dishwasher", deadline: "Today", priority: "high", done: false },
-      { id: 2, title: "Laundry", description: "Fold clothes and put away", deadline: "Tomorrow", priority: "low", done: false },
-      { id: 3, title: "Tidy up", deadline: "Today", priority: "medium", done: false }
+      {
+        id: 1,
+        title: 'Dishes',
+        description: 'Empty dishwasher',
+        deadline: 'Today',
+        priority: 'high',
+        done: false
+      },
+      {
+        id: 2,
+        title: 'Laundry',
+        description: 'Fold clothes and put away',
+        deadline: 'Tomorrow',
+        priority: 'low',
+        done: false
+      },
+      {
+        id: 3,
+        title: 'Tidy up',
+        deadline: 'Today',
+        priority: 'medium',
+        done: false
+      }
     ]
   });
 
   const [formState, setFormState] = useState({
-    title: "",
-    description: "",
-    deadline: "",
-    priority: "low"
+    title: '',
+    description: '',
+    deadline: '',
+    priority: 'low'
   });
 
   const doneHandler = (taskIndex) => {
@@ -40,21 +59,26 @@ function App() {
     let form = { ...formState };
 
     switch (event.target.name) {
-      case "title":
+      case 'title':
         form.title = event.target.value;
         break;
-      case "description":
+
+      case 'description':
         form.description = event.target.value;
         break;
-      case "deadline":
+
+      case 'deadline':
         form.deadline = event.target.value;
         break;
-      case "priority":
+
+      case 'priority':
         form.priority = event.target.value;
         break;
+
       default:
         form = formState;
     }
+
     setFormState(form);
   };
 
@@ -66,13 +90,22 @@ function App() {
 
     form.id = uuidv4();
     form.done = false;
+
     tasks.push(form);
+
     setTaskState({ tasks });
-    setFormState({ title: "", description: "", deadline: "", priority: "low" });
+
+    setFormState({
+      title: '',
+      description: '',
+      deadline: '',
+      priority: 'low'
+    });
   };
 
   return (
     <div className="container">
+
       {/* App Header */}
       <Container component="main">
         <Typography
@@ -118,7 +151,6 @@ function App() {
       </Container>
       {/* End Task Card Grid */}
 
-
       {/* Footer - Add Task Form */}
       <Container
         component="footer"
@@ -128,9 +160,7 @@ function App() {
           py: 6,
         }}
       >
-        <Grid container sx={{
-          justifyContent: "center"
-        }}>
+        <Grid container justifyContent="center">
           <AddTaskForm
             submit={formSubmitHandler}
             change={formChangeHandler}
@@ -138,6 +168,7 @@ function App() {
         </Grid>
       </Container>
       {/* End Footer */}
+
     </div>
   );
 }
