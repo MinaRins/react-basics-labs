@@ -1,33 +1,83 @@
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+
 const AddTaskForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={props.submit}>
-        <label>
-            Task title:
-            <input type="text" name="title" required onChange={(event) => props.change(event)} />
-        </label>
-        <br />
-        <label>
-            Due date:
-            <input type="date" name="deadline" required onChange={(event) => props.change(event)} />
-        </label>
-        <br />
-        <label>
-            Details:
-            <input type="text" name="description" onChange={(event) => props.change(event)} />
-        </label>
-        <br />
-        <label>
-            Priority:
-            <select name="priority" onChange={(event) => props.change(event)}>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-            </select>
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <Box
+        component="form"
+        sx={{
+          '& .MuiOutlinedInput-root': { m: 1, width: '30ch' },
+        }}
+        onSubmit={props.submit}
+      >
+        <div>
+          <TextField
+            required
+            id="outlined-required"
+            name="title"
+            label="Task Title"
+            slotProps={{ inputLabel: { shrink: true } }}
+            onChange={(event) => props.change(event)}
+          />
+        </div>
+
+        <div>
+          <TextField
+            required
+            name="deadline"
+            label="Deadline"
+            slotProps={{ inputLabel: { shrink: true } }}
+            type="date"
+            onChange={(event) => props.change(event)}
+          />
+        </div>
+
+        <div>
+          <TextField
+            name="description"
+            id="outlined-multiline-static"
+            label="Task Details"
+            slotProps={{ inputLabel: { shrink: true } }}
+            multiline
+            rows={4}
+            onChange={(event) => props.change(event)}
+          />
+        </div>
+
+        <div>
+          <TextField
+            select
+            name="priority"
+            label="Priority"
+            defaultValue="low"
+            slotProps={{ inputLabel: { shrink: true } }}
+            onChange={(event) => props.change(event)}
+          >
+            <MenuItem value="low">Low</MenuItem>
+            <MenuItem value="medium">Medium</MenuItem>
+            <MenuItem value="high">High</MenuItem>
+          </TextField>
+        </div>
+
+        <div>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            sx={{
+              m: 1,
+              p: 1,
+              width: '95%'
+            }}
+          >
+            Add Task
+          </Button>
+        </div>
+      </Box>
     </div>
   )
 };
